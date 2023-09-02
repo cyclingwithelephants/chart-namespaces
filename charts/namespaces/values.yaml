@@ -1,0 +1,24 @@
+defaults: # provides defaults that will be overwritten if specified elsewhere
+  requests:
+    cpu: 2
+    memory: 4Gi
+  limits:
+    cpu: 4
+    memory: 4Gi
+
+common: # rather than overriding the default, appends common with namespace specific values
+  labels:
+    common: label
+
+namespaces:
+  - name: namespace-a
+    labels:
+      specific: label
+    requests:
+      cpu: 3
+      memory: 3Gi
+    limits:
+      cpu: 3
+      memory: 3Gi
+
+  - name: namespace-b
