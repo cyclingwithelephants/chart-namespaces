@@ -6,10 +6,10 @@ cluster:
 
 controlPlane:
   replicas: 3
-  hostName: ""
+  hostName: "cloudlab.prod.adamland.xyz"
   versions:
-    talos: &talosVersion 1.4.5
-    kubernetes: &k8sVersion 1.28.1
+    talos: &talosVersion v1.4.5
+    kubernetes: &k8sVersion v1.28.1
   hcloud:
     imageName: &imageName talos-image-2023-07-23-1210
     # For machine types available visit https://www.hetzner.com/cloud

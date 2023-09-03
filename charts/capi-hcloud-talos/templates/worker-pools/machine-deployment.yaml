@@ -6,10 +6,9 @@ metadata:
   labels:
     nodepool: {{ $.Values.cluster.name }}-{{ .name }}
   name: {{ $.Values.cluster.name }}-{{ .name }}
-  namespace: cluster
 spec:
   clusterName: {{ $.Values.cluster.name }}
-  replicas: {{ .replicas | quote }}
+  replicas: {{ .replicas }}
   selector:
     matchLabels: null
   template:
