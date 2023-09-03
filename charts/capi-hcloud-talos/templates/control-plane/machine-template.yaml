@@ -1,0 +1,11 @@
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: HCloudMachineTemplate
+metadata:
+  name: {{ .Values.cluster.name }}-control-plane
+spec:
+  template:
+    spec:
+      imageName: {{ .Values.controlPlane.hcloud.imageName }}
+      placementGroupName: control-plane
+      type: {{ .Values.controlPlane.hcloud.machineType }}

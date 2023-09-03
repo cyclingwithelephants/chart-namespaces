@@ -1,0 +1,32 @@
+{{- range .Values.workerPools }}
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  labels:
+    nodepool: {{ $.Values.cluster.name }}-{{ .name }}
+  name: {{ $.Values.cluster.name }}-{{ .name }}
+  namespace: cluster
+spec:
+  clusterName: {{ $.Values.cluster.name }}
+  replicas: {{ .replicas | quote }}
+  selector:
+    matchLabels: null
+  template:
+    metadata:
+      labels:
+        nodepool: {{ $.Values.cluster.name }}-{{ .name }}
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+          kind: TalosConfigTemplate
+          name: {{ $.Values.cluster.name }}-{{ .name }}
+      clusterName: {{ $.Values.cluster.name }}
+      failureDomain: {{ $.Values.cluster.hcloudRegion }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: HCloudMachineTemplate
+        name: {{ $.Values.cluster.name }}-{{ .name }}
+      version: {{ .versions.kubernetes | quote }}
+{{- end }}
