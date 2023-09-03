@@ -1,4 +1,5 @@
-defaults: # provides defaults that will be overwritten if specified elsewhere
+# provides defaults that will be overwritten if specified elsewhere
+defaults:
   requests:
     cpu: 2
     memory: 4Gi
@@ -6,10 +7,18 @@ defaults: # provides defaults that will be overwritten if specified elsewhere
     cpu: 4
     memory: 4Gi
 
-common: # rather than overriding the default, appends common with namespace specific values
+# Rather than being overridden like defaults, common values prepend namespace specific values
+common:
   labels:
     common: label
 
+# One can configure a resourceQuota for the following namespaces without it creating the namespaces.
+# This is handled automatically by the chart.
+# - default
+# - kube-system
+# - kube-public
+# - kube-node-lease
+# TODO: The number `0` must be quoted, otherwise it is interpreted as false and skipped over
 namespaces:
   - name: namespace-a
     labels:
@@ -20,5 +29,26 @@ namespaces:
     limits:
       cpu: 3
       memory: 3Gi
-
   - name: namespace-b
+  - name: default
+    requests:
+      cpu: "0"
+      memory: 0Gi
+    limits:
+      cpu: "0"
+      memory: 0Gi
+  - name: kube-system
+  - name: kube-node-lease
+    requests:
+      cpu: "0"
+      memory: 0Gi
+    limits:
+      cpu: "0"
+      memory: 0Gi
+  - name: kube-public
+    requests:
+      cpu: "0"
+      memory: 0Gi
+    limits:
+      cpu: "0"
+      memory: 0Gi
