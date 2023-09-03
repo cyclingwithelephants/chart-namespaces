@@ -1,0 +1,31 @@
+
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: HetznerCluster
+metadata:
+  name: {{ .Values.cluster.name }}
+spec:
+  controlPlaneEndpoint:
+    host: {{ .Values.controlPlane.hostName }}
+    port: 443
+  controlPlaneLoadBalancer:
+    region: {{ .Values.cluster.hcloudRegion }}
+  controlPlaneRegions:
+  - {{ .Values.cluster.hcloudRegion }}
+  hcloudNetwork:
+    enabled: true # enables private network.
+    cidrBlock: # "10.0.0.0/16" this is the default for the nodes, rather than the pods
+  hcloudPlacementGroups:
+  - name: control-plane
+    type: spread
+  {{- range .Values.workerPools }}
+  - name: {{ .name }}
+    type: spread
+  {{- end }}
+  hetznerSecretRef:
+    key:
+      hcloudToken: token
+    name: hcloud
+  sshKeys:
+    hcloud:
+    - name: {{ .Values.cluster.sshKey }}

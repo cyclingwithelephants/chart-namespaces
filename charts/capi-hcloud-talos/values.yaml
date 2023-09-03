@@ -1,0 +1,44 @@
+cluster:
+  name: cloudlab
+  hcloudRegion: fsn1
+  # the name of the ssh key stored in hcloud project
+  sshKey: cluster-nodes
+
+controlPlane:
+  replicas: 3
+  hostName: "cloudlab.prod.adamland.xyz"
+  versions:
+    talos: &talosVersion v1.4.5
+    kubernetes: &k8sVersion v1.28.1
+  hcloud:
+    imageName: &imageName talos-image-2023-07-23-1210
+    # For machine types available visit https://www.hetzner.com/cloud
+    # CAX11 is ARM, 2 CPU, 4GB RAM, 40GB Disk
+    # limitation of caph means machineType must be specifed in lower case.
+    machineType: cax11
+  # It looks like configuration must be in the form of json patches, rather than specifying an inline yaml document
+  talosConfigPatches:
+  - op: add
+    path: /cluster/externalCloudProvider
+    value:
+      enabled: true
+  - op: add
+    path: /cluster/apiServer/admissionControl/0/configuration/exemptions/namespaces
+    value:
+    - kube-system
+    - logging
+
+workerPools:
+- name: default-node-pool
+  replicas: 3
+  versions:
+    talos: *talosVersion
+    kubernetes: *k8sVersion
+  hcloud:
+    imageName: *imageName
+    machineType: cax11
+  talosConfigPatches:
+  - op: add
+    path: /cluster/externalCloudProvider
+    value:
+      enabled: true

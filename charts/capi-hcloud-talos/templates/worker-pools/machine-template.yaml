@@ -1,0 +1,16 @@
+{{- range .Values.workerPools }}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: HCloudMachineTemplate
+metadata:
+  name: {{ $.Values.cluster.name }}-{{ .name }}
+spec:
+  template:
+    spec:
+      imageName: {{ .hcloud.imageName }}
+      placementGroupName: {{ .name }}
+      type: {{ .hcloud.machineType }}
+      publicNetwork:
+        enableIPv4: false
+        enableIPv6: false
+{{- end }}

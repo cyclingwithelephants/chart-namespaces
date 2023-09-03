@@ -1,0 +1,13 @@
+{{- range .Values.workerPools }}
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
+kind: TalosConfigTemplate
+metadata:
+  name: {{ $.Values.cluster.name }}-{{ .name }}
+spec:
+  template:
+    spec:
+      configPatches: {{ toYaml .talosConfigPatches | nindent 6 }}
+      generateType: worker
+      talosVersion: {{ .versions.talos }}
+{{- end }}

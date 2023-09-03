@@ -1,0 +1,17 @@
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
+kind: TalosControlPlane
+metadata:
+  name: {{ .Values.cluster.name }}-control-plane
+spec:
+  controlPlaneConfig:
+    controlplane:
+      configPatches: {{ toYaml .Values.controlPlane.talosConfigPatches | nindent 6 }}
+      generateType: controlplane
+      talosVersion: {{ .Values.controlPlane.versions.kubernetes }}
+  infrastructureTemplate:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: HCloudMachineTemplate
+    name: {{ .Values.cluster.name }}-control-plane
+  replicas: {{ .Values.controlPlane.replicas }}
+  version: {{ .Values.controlPlane.versions.kubernetes }}
