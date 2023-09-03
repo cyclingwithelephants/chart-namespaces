@@ -6,8 +6,8 @@ metadata:
   name: {{ .name | quote }}
 spec:
   hard:
-    requests.cpu:    {{- if .requests }} {{ default $.Values.defaults.requests.cpu .requests.cpu | quote }}       {{- else }} {{ $.Values.defaults.requests.cpu | quote }}    {{- end }}
+    requests.cpu:    {{- if .requests }} {{ default $.Values.defaults.requests.cpu    .requests.cpu    | quote }} {{- else }} {{ $.Values.defaults.requests.cpu    | quote }} {{- end }}
     requests.memory: {{- if .requests }} {{ default $.Values.defaults.requests.memory .requests.memory | quote }} {{- else }} {{ $.Values.defaults.requests.memory | quote }} {{- end }}
-    limits.cpu:      {{- if .limits }}   {{ default $.Values.defaults.limits.cpu .limits.cpu | quote }}           {{- else }} {{ $.Values.defaults.limits.cpu | quote }}      {{- end }}
-    limits.memory:   {{- if .limits }}   {{ default $.Values.defaults.limits.memory .limits.memory | quote }}     {{- else }} {{ $.Values.defaults.limits.memory | quote }}   {{- end }}
+    limits.cpu:      {{- if .limits }}   {{ default $.Values.defaults.limits.cpu      .limits.cpu      | quote }} {{- else }} {{ $.Values.defaults.limits.cpu      | quote }} {{- end }}
+    limits.memory:   {{- if .limits }}   {{ default $.Values.defaults.limits.memory   .limits.memory   | quote }} {{- else }} {{ $.Values.defaults.limits.memory   | quote }} {{- end }}
 {{- end }}

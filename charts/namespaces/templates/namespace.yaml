@@ -1,4 +1,5 @@
 {{- range .Values.namespaces }}
+  {{- if not (has .name (list "default" "kube-system" "kube-public" "kube-node-lease"))}}
 ---
 apiVersion: v1
 kind: Namespace
@@ -11,4 +12,5 @@ metadata:
     {{- if .labels }}
       {{- toYaml .labels | nindent 4 }}
     {{- end }}
+  {{- end }}
 {{- end }}
