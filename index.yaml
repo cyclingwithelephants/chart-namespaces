@@ -2,6 +2,18 @@ apiVersion: v1
 entries:
   namespaces:
   - apiVersion: v2
+    created: "2023-09-03T11:58:21.569054278Z"
+    description: A chart to factor out the boilerplate of managing namespaces and
+      associated resourceQuotas
+    digest: edfd700c4926144e6b7e2dec4bab67e856411b4add0b873048a337d71b0f8d37
+    maintainers:
+    - name: cyclingwithelephants
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/cyclingwithelephants/charts/releases/download/namespaces-0.2.0/namespaces-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2023-09-02T20:26:57.016996427Z"
     description: A chart to factor out the boilerplate of managing namespaces and
       associated resourceQuotas
@@ -11,4 +23,4 @@ entries:
     urls:
     - https://github.com/cyclingwithelephants/charts/releases/download/namespaces-0.1.0/namespaces-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-02T20:26:57.017000327Z"
+generated: "2023-09-03T11:58:21.569061278Z"
