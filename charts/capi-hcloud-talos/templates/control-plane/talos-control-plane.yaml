@@ -6,7 +6,7 @@ metadata:
 spec:
   controlPlaneConfig:
     controlplane:
-      configPatches: {{ toYaml .Values.controlPlane.talosConfigPatches }}
+      configPatches: {{ toYaml .Values.controlPlane.talosConfigPatches | nindent 6 }}
       generateType: controlplane
       talosVersion: {{ .Values.controlPlane.versions.kubernetes }}
   infrastructureTemplate:
