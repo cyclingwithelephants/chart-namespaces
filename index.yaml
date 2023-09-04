@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   capi-hcloud-talos:
   - apiVersion: v2
+    created: "2023-09-04T12:29:15.004344469Z"
+    description: Create a CAPI cluster using hetzner
+    digest: cf4529b3015ef58e244df9b1d1ed7f5f8a4d4d57352712d6a7926b03eaa0217d
+    maintainers:
+    - name: cyclingwithelephants
+    name: capi-hcloud-talos
+    type: application
+    urls:
+    - https://github.com/cyclingwithelephants/charts/releases/download/capi-hcloud-talos-0.3.0/capi-hcloud-talos-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2023-09-04T11:15:01.358265641Z"
     description: Create a CAPI cluster using hetzner
     digest: 626dc00884542306835eada576853e38e4b86abc88480af5814e577787774651
@@ -46,4 +57,4 @@ entries:
     urls:
     - https://github.com/cyclingwithelephants/charts/releases/download/namespaces-0.1.0/namespaces-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-04T11:15:01.358283741Z"
+generated: "2023-09-04T12:29:15.004357769Z"
