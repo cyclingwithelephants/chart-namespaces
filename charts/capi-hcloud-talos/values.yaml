@@ -30,6 +30,10 @@ controlPlane:
 
 workerPools:
 - name: default-node-pool
+  autoscaling:
+    enabled: true
+    minNodes: 3
+    maxNodes: 5
   replicas: 3
   versions:
     talos: *talosVersion

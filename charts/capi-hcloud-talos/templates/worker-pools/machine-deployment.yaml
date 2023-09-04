@@ -6,6 +6,13 @@ metadata:
   labels:
     nodepool: {{ $.Values.cluster.name }}-{{ .name }}
   name: {{ $.Values.cluster.name }}-{{ .name }}
+    {{- if .autoscaling }}
+      {{- if .autoscaling.enabled }}
+  annotations:
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: {{ .autoscaling.minNodes | quote }}
+    cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: {{ .autoscaling.maxNodes | quote }}
+      {{- end }}
+    {{- end }}
 spec:
   clusterName: {{ $.Values.cluster.name }}
   replicas: {{ .replicas }}
