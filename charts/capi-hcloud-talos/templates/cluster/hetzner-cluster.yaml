@@ -6,7 +6,9 @@ metadata:
   name: {{ .Values.cluster.name }}
 spec:
   controlPlaneEndpoint:
+    {{- if .Values.controlPlane.hostName }}
     host: {{ .Values.controlPlane.hostName }}
+    {{- end }}
     port: 443
   controlPlaneLoadBalancer:
     region: {{ .Values.cluster.hcloudRegion }}
