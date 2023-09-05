@@ -8,7 +8,7 @@ spec:
     controlplane:
       configPatches: {{ toYaml .Values.controlPlane.talosConfigPatches | nindent 6 }}
       generateType: controlplane
-      talosVersion: {{ .Values.controlPlane.versions.kubernetes }}
+      talosVersion: {{ .Values.controlPlane.versions.talos }}
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
     kind: HCloudMachineTemplate
