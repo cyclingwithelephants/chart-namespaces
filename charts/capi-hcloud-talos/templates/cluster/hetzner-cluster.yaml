@@ -27,7 +27,7 @@ spec:
   hetznerSecretRef:
     key:
       hcloudToken: token
-    name: {{ .Release.Namespace }}/hcloud
+    name: hcloud
   sshKeys:
     hcloud:
     - name: {{ .Values.cluster.sshKey }}
