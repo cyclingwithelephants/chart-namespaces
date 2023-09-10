@@ -5,11 +5,11 @@ kind: HetznerCluster
 metadata:
   name: {{ .Values.cluster.name }}
 spec:
+  {{- if .Values.controlPlane.endpoint }}
   controlPlaneEndpoint:
-    {{- if .Values.controlPlane.hostName }}
-    host: {{ .Values.controlPlane.hostName }}
-    {{- end }}
-    port: 443
+    host: {{ .Values.controlPlane.endpoint.hostName }}
+    port: {{ .Values.controlPlane.endpoint.port | default 443 }}
+  {{- end }}
   controlPlaneLoadBalancer:
     region: {{ .Values.cluster.hcloudRegion }}
   controlPlaneRegions:

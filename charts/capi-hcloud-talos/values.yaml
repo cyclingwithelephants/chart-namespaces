@@ -9,7 +9,8 @@ controlPlane:
   publicNetwork:
     enableIPv4: true
     enableIPv6: false
-  # hostName: "cloudlab.prod.adamland.xyz"
+#  endpoint:
+#    hostName: "cloudlab.prod.adamland.xyz"
   versions:
     talos: &talosVersion v1.4.5
     kubernetes: &k8sVersion v1.28.1
