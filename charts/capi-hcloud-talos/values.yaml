@@ -6,7 +6,11 @@ cluster:
 
 controlPlane:
   replicas: 3
-  hostName: "cloudlab.prod.adamland.xyz"
+  publicNetwork:
+    enableIPv4: true
+    enableIPv6: false
+#  endpoint:
+#    hostName: "cloudlab.prod.adamland.xyz"
   versions:
     talos: &talosVersion v1.4.5
     kubernetes: &k8sVersion v1.28.1
@@ -30,6 +34,9 @@ controlPlane:
 
 workerPools:
 - name: default-node-pool
+  publicNetwork:
+    enableIPv4: true
+    enableIPv6: false
   autoscaling:
     enabled: true
     minNodes: 3

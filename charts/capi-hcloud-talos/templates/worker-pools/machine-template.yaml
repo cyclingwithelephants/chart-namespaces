@@ -11,6 +11,6 @@ spec:
       placementGroupName: {{ .name }}
       type: {{ .hcloud.machineType }}
       publicNetwork:
-        enableIPv4: false
-        enableIPv6: false
+        enableIPv4: {{ .publicNetwork.enableIPv4 | default true }}
+        enableIPv6: {{ .publicNetwork.enableIPv6 | default true }}
 {{- end }}

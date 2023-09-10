@@ -10,5 +10,5 @@ spec:
       placementGroupName: control-plane
       type: {{ .Values.controlPlane.hcloud.machineType }}
       publicNetwork:
-        enableIPv4: false
-        enableIPv6: false
+        enableIPv4: {{ .Values.controlPlane.publicNetwork.enableIPv4 | default true }}
+        enableIPv6: {{ .Values.controlPlane.publicNetwork.enableIPv6 | default true }}
