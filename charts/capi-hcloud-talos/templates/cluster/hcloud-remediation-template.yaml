@@ -8,5 +8,5 @@ spec:
     spec:
       strategy:
         retryLimit: 1
-        timeout: 180s
+        timeout: 300s
         type: Reboot
